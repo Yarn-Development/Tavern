@@ -1,30 +1,30 @@
 const {
-    Client,
-    Interaction,
-    MessageEmbed
-} = require("discord.js");
+  Client,
+  Interaction,
+  MessageEmbed,
+} = require('discord.js');
 
 module.exports = {
-    name: "avatar",
-    type: "USER",
-    /**
-     * 
-     * @param {Client} client 
+  name: 'avatar',
+  type: 'USER',
+  /**
+     *
+     * @param {Client} client
      * @param {Interaction} interaction
      */
-    run: async (client, interaction) => {
-        const user = interaction.user;
+  run: async (client, interaction) => {
+    const { user } = interaction;
 
-        const avatarEmbed = new MessageEmbed()
-            .setTitle(`${user.tag}'s Avatar`)
-            .setColor(user.displayHexColor)
-            .setImage(user.displayAvatarURL({
-                dynamic: true,
-                size: 4096
-            }))
+    const avatarEmbed = new MessageEmbed()
+      .setTitle(`${user.tag}'s Avatar`)
+      .setColor(user.displayHexColor)
+      .setImage(user.displayAvatarURL({
+        dynamic: true,
+        size: 4096,
+      }));
 
-        interaction.followUp({
-            embeds: [avatarEmbed]
-        });
-    }
-}
+    interaction.followUp({
+      embeds: [avatarEmbed],
+    });
+  },
+};

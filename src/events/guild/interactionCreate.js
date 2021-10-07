@@ -1,22 +1,26 @@
 module.exports = async (client, interaction) => {
-    if (interaction.isCommand()) {
-        const command = client.interactions.get(interaction.commandName);
+  if (interaction.isCommand()) {
+    await interaction.deferReply({
+      ephemeral: false,
+    });
 
-        const args = [];
+    const command = client.interactions.get(interaction.commandName);
 
-        if (!command) return interaction.reply({
-            content: "Something Went Wrong"
-        });
-
-        command.run(client, interaction, args);
+    if (!command) {
+      return interaction.reply({
+        content: 'ERROR: Could not find the command specified!',
+      });
     }
 
-    if (interaction.isContextMenu()) {
-        await interaction.deferReply({
-            ephemeral: false
-        });
+    command.run(client, interaction);
+  }
 
-        const command = client.interactions.get(interaction.commandName);
-        if (command) command.run(client, interaction);
-    }
-}
+  if (interaction.isContextMenu()) {
+    await interaction.deferReply({
+      ephemeral: false,
+    });
+
+    const command = client.interactions.get(interaction.commandName);
+    if (command) command.run(client, interaction);
+  }
+};

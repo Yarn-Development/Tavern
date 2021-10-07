@@ -1,14 +1,14 @@
 module.exports = async (client, message) => {
-    if (!message.guild || message.author.bot) return;
+  if (!message.guild || message.author.bot) return;
 
-    const [cmd, ...args] = message.content
-        .slice(client.config.prefix.length)
-        .trim()
-        .split(" ");
+  const [cmd, ...args] = message.content
+    .slice(client.config.prefix.length)
+    .trim()
+    .split(' ');
 
-    const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases ?.includes(cmd.toLowerCase()));
+  const command = client.commands.get(cmd.toLowerCase()) || client.commands.find((c) => c.aliases?.includes(cmd.toLowerCase()));
 
-    if (!command) return;
+  if (!command) return;
 
-    await command.run(client, message, args);
-}
+  await command.run(client, message, args);
+};
