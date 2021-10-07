@@ -1,15 +1,15 @@
 const {
     Client,
-    Interaction
+    CommandInteraction
 } = require("discord.js")
 module.exports = {
     name: 'ping',
-    description: 'My ping.',
+    description: 'Find out the bots connection to the tavern.',
     type:'CHAT_INPUT',
     /**  
-    * {param} {Client} client
-    * {param} {Interaction} interaction
-    * {param} {String[]} args
+    * @param {Client} client
+    * @param {CommandInteraction} interaction
+    * @param {String[]} args
     */
     run: async (client, interaction, args) => {
         await interaction.reply({
