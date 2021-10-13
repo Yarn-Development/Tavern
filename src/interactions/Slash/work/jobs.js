@@ -3,7 +3,7 @@ const {
   CommandInteraction,
   MessageEmbed
 } = require('discord.js');
-
+ const { jobs } = require("@utils/utils")
 module.exports = {
   name: 'jobs',
   description: 'Find out what tasks you can do to assist future travellers.',
@@ -18,13 +18,16 @@ module.exports = {
     if (!newuser) {
       interaction.followUp({ content: `Greetings ${interaction.user.username}! It seems as if we haven't met before. You need to meet the bartender before trying to find some tasks. Do this by running either the /bartender command, or the t!bartender command. ` });
     } else {
+      let jobobj = Object.keys(jobs) // converts object into array to be handled later
       const embed = new MessageEmbed()
         .setTitle(`Tasks available for ${interaction.user.username}`)
         .setColor('BROWN')
         .setTimestamp()
         .setDescription('These tasks change weekly!')
-        .addField('Available tasks:', '\n➼ Clean the floors\n➼Fetch the beer barrels\n➼ Converse with the innkeeper')
-        .setFooter('2021 © Yarn Development | Tavern');
+        for(const property in jobobj){
+          embed.addField(`${jobs[jobobj[property]].name}`, `Cost - ${jobs[jobobj[property]].cost}\nEarns: ${jobs[jobobj[property]].earns}`)
+        }
+        embed.setFooter('2021 © Yarn Development | Tavern');
       interaction.followUp({ embeds: [embed] });
     }
   },

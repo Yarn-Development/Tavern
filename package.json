@@ -1,33 +1,44 @@
 {
-  "name": "discord.js-v13-examplebot",
+  "name": "Tavern",
   "version": "1.0.0",
-  "description": "An example discord bot.",
+  "description": "Economy Discord Bot With a Medieval Tavern theme.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lukass-0069/Discord.js-v13-ExampleBot.git"
+    "url": "git+https://github.com/aspekts/Tavern.git"
   },
   "keywords": [],
-  "author": "Lukass#0006",
+  "author": "Yarn Development",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Lukass-0069/Discord.js-v13-ExampleBot/issues"
+    "url": "https://github.com/aspekts/Tavern/issues"
   },
-  "homepage": "https://github.com/Lukass-0069/Discord.js-v13-ExampleBot#readme",
+  "_moduleAliases": {
+    "@root": ".",
+    "@commands": "src/commands/",
+    "@interactions": "src/interactions/",
+    "@handlers": "src/handlers/",
+    "@src": "src/",
+    "@utils": "src/utils/"
+  },
+  "homepage": "https://github.com/aspekts/Tavern#readme",
   "dependencies": {
     "ascii-table": "^0.0.9",
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
+    "module-alias": "^2.2.2",
     "ms": "^2.1.2",
+    "npm": "^8.0.0",
     "quick.db": "^7.1.3"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.2"
+    "eslint-plugin-import": "^2.24.2",
+    "node": "^16.10.0"
   }
 }

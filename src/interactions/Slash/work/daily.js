@@ -7,7 +7,7 @@ const ms = require('ms');
 
 module.exports = {
   name: 'daily',
-  description: 'Collect your daily grape reward!',
+  description: 'Collect your daily reward!',
   type: 'CHAT_INPUT',
   /**
  * @param {CommandInteraction} interaction
@@ -18,7 +18,7 @@ module.exports = {
     const RNG = 30;
     const jackpot = Math.floor((Math.random() * 1000) + 1000);
     const regular = Math.floor((Math.random() * 100) + 100);
-    const dtime = client.db.fetch(`daily_${interaction.user.id}`) || client.db.fetch(`daily_${interaction.user.id}.${interaction.guild.id}`);
+    const dtime = client.db.fetch(`daily_${interaction.user.id}`) ? client.db.fetch(`daily_${interaction.user.id}`) : client.db.fetch(`daily_${interaction.user.id}.${interaction.guild.id}`);
     const newuser = client.db.fetch(`reg_${interaction.user.id}`);
     if (!newuser) {
       interaction.followUp({ content: `Greetings ${interaction.user.username}! It seems as if we haven't met before. You need to meet the bartender before trying to find some tasks. Do this by running either the /bartender command, or the t!bartender command. ` });
@@ -39,7 +39,7 @@ module.exports = {
         const embed = new MessageEmbed()
           .setTitle('💰 JACKPOT 💰 ')
           .setDescription('Congratulations Traveller! You got lucky today and struck the jackpot!')
-          .addField('Overview', `Probability: 1/50\nEarned: ${jackpot.toString()} 🍇 `)
+          .addField('Overview', `Probability: 1/30\nEarned: ${jackpot.toString()} 🍇 `)
           .setColor('GOLD')
           .setTimestamp()
           .setFooter('2021 © Yarn Development | Tavern');
@@ -58,7 +58,7 @@ module.exports = {
         const regbed = new MessageEmbed()
           .setTitle('Daily Reward')
           .setDescription("Unfortunately you couldn't win the jackpot this time. Maybe next time?")
-          .addField('Overview', `Jackpot Probability :1/50\nEarned: ${regular.toString()} 🍇`)
+          .addField('Overview', `Jackpot Probability :1/30\nEarned: ${regular.toString()} 🍇`)
           .setColor('DARK_BUT_NOT_BLACK')
           .setTimestamp()
           .setFooter('2021 © Yarn Development | Tavern');
