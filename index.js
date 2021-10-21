@@ -1,17 +1,35 @@
-require('module-alias/register') // allows module like paths to be used
-require('dotenv').config(); // allows process,env to be used for enviroment variables
-const { Client, Collection } = require('discord.js');
-const client = new Client({
-  intents: 513,
-}); // initialiaze client to be used later
-client.db = require('quick.db');
-client.commands = new Collection(); // allows regular prefix commands to be fetched
-client.aliases = new Collection(); // allows regular prefix aliases to be fetched
-client.interactions = new Collection(); // alows slash commands and context menus to be fetched
-client.config = require('./src/utils/Json/botconfig.json'); // alias for all parameters in specified file
-['command', 'event', 'interaction'].forEach((handler) => {
-  require(`./src/handlers/${handler}`)(client);
-}); // initialiazes all handlers in array
-client.login(); // no token specified in here, because it is in the env file
+//  runs express server to be hosted
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => {
+	res.send('https://yarndev.xyz/ is a cool site yknow');
+});
+app.listen(3000, () => {
+	console.log('Tavern App Running at http://localhost:3000');
+});
+// allows module like paths to be used
+require('module-alias/register');
+// allows process.env to be used for enviroment variables
+require('dotenv').config();
 
-console.log("Hello World");
+const { Client, Collection } = require('discord.js');
+// initialiaze client to be used later
+const client = new Client({
+	intents: 513,
+});
+// global client variables
+client.db = require('quick.db');
+// allows regular prefix commands to be fetched
+client.commands = new Collection();
+// allows regular prefix aliases to be fetched
+client.aliases = new Collection();
+// alows slash commands and context menus to be fetched
+client.interactions = new Collection();
+// initialiazes config variables globally
+client.config = require('./src/utils/Json/botconfig.json');
+// alias for all parameters in specified file, initialiazes all handlers in array
+['command', 'event', 'interaction'].forEach((handler) => {
+	require(`./src/handlers/${handler}`)(client);
+});
+// no token specified in here, because it is in the env file
+client.login();

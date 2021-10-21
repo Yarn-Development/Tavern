@@ -1,46 +1,38 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-  name: 'eval',
-  run: async (client, message, args) => {
-    if (message.author.bot) return;
+	name: 'eval',
+	run: async (client, message, args) => {
+		if (message.author.bot) return;
 
-    if (message.author.id !== '294870523438170112') {
-      return message.channel.send(':x: Forbidden: This Command is Owner-Only!');
-    }
+		if (message.author.id !== '294870523438170112') {
+			return message.channel.send(':x: Forbidden: This Command is Owner-Only!');
+		}
+		const input = args.join(' ');
+		if (!input) return message.reply('Please provide code to eval');
+		if (!input.toLowerCase().includes('token')) {
+			const embed = new MessageEmbed();
 
-    if (!args[0]) {
-      message.channel.send('You need to evaluate _**SOMETHING**_ Please!');
-    }
+			try {
+				let output = eval(input);
+				if (typeof output !== 'string') output = require('util').inspect(output, { depth: 0 });
 
-    try {
-      if (args.join(' ').toLowerCase().includes('token')) {
-        return;
-      }
-      const find = '```';
-      const re = new RegExp(find, 'g');
-      const toEval = args.join(' ');
-      const strippedeval = toEval.replace(re, '');
-      const evaluated = eval();
-      const embed = new Discord.MessageEmbed()
-        .setTitle('Eval')
-        .addField(
-          'ToEvaluate',
-          `\`\`\`js\n${strippedeval}\n\`\`\``,
-        )
-        .addField('Evaluated', evaluated)
-        .addField('Type of:', typeof evaluated)
-        .setTimestamp()
-        .setFooter(`${message.author.tag}`, client.user.displayAvatarURL());
-      message.channel.send({ embeds: [embed] });
-    } catch (e) {
-      console.log(e);
-      const errorembed = new Discord.MessageEmbed()
-        .addField(':x:', 'Error!')
-        .setDescription(e)
-        .setTimestamp()
-        .setFooter(`${message.author.tag}`, client.user.displayAvatarURL());
-      message.channel.send({ embeds: [errorembed] });
-    }
-  },
+				embed
+					.addField('Input', `\`\`\`js\n${input.length > 1024 ? 'Too large to display.' : input}\`\`\``)
+					.addField('Output', `\`\`\`js\n${output.length > 1024 ? 'Too large to display.' : output}\`\`\``)
+					.setColor('RANDOM');
+			}
+			catch (err) {
+				embed
+					.addField('Input', `\`\`\`js\n${input.length > 1024 ? 'Too large to display.' : input}\`\`\``)
+					.addField('Output', `\`\`\`js\n${err.length > 1024 ? 'Too large to display.' : err}\`\`\``)
+					.setColor('ORANGE');
+			}
+
+			message.channel.send({ embeds: [embed] });
+		}
+		else {
+			message.channel.send('My token: ||nevergonnagiveyoupnevergonnaletyoudown|| Please dont hack me! :(');
+		}
+	},
 };
