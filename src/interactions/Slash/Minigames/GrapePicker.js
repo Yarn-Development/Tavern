@@ -8,7 +8,7 @@ const {
 
 module.exports = {
 	name: 'grapepicker',
-	description: 'PICK GRAPES',
+	description: 'Pick grapes',
 	type: 1,
 	options: [],
 	default_permission: null,
