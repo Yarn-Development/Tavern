@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 app.get('/', (req, res) => {
-	res.send('https://yarndev.xyz/ is a cool site yknow');
+	res.send('https://yarndev.co.uk/ is a cool site yknow');
 });
 app.listen(3000, () => {
 	console.log('Tavern App Running at http://localhost:3000');
@@ -32,4 +32,4 @@ client.config = require('./src/utils/Json/botconfig.json');
 	require(`./src/handlers/${handler}`)(client);
 });
 // no token specified in here, because it is in the env file
-client.login();
+client.login().then(console.log('Logged in sucessfully!'));

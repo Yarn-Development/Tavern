@@ -18,14 +18,14 @@ module.exports = {
   * @param  {CommandInteraction} interaction
   */
 	run: async (client, interaction) => {
-    	let button = new MessageButton()
-      .setStyle("")
-  const cps = interaction.channel.createMessageComponentCollector({ componentType: 'BUTTON', time: 50000, max:25 });
-  let count = 0;
-  cps.on("collect", i => {
-    if(interaction.user.id === i.user.id) {
+    	const button = new MessageButton()
+			.setStyle('');
+		const cps = interaction.channel.createMessageComponentCollector({ componentType: 'BUTTON', time: 50000, max:25 });
+		const count = 0;
+		cps.on('collect', i => {
+			if(interaction.user.id === i.user.id) {
 
-    }
-  })
- }
-}
+			}
+		});
+	},
+};

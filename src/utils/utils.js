@@ -5,12 +5,12 @@ function capitalize(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 }
 async function CPSTest({ time, interaction, channel }) {
-	let button = new MessageButton()
-  const cps = interaction.channel.createMessageComponentCollector({ componentType: 'BUTTON', time: time, max:25 });
-  let count = 0
-  cps.on("collect", i => {
-    
-  })
+	const button = new MessageButton();
+	const cps = interaction.channel.createMessageComponentCollector({ componentType: 'BUTTON', time: time, max:25 });
+	const count = 0;
+	cps.on('collect', i => {
+
+	});
 
 }
 const jobs = {
