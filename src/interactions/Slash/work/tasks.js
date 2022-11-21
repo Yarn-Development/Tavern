@@ -26,7 +26,7 @@ module.exports = {
 			.setColor('BROWN')
 			.setTimestamp()
 			.setDescription('These tasks always change!')
-			.addField('Available tasks:', `\n➼${tasks.quotes[randomtasks_1]}\n➼${tasks.quotes[randomtasks_2]}\n➼ ${tasks.quotes[randomtasks_3]}`);
+			.addFields({name: 'Available tasks:', value: `\n➼${tasks.quotes[randomtasks_1]}\n➼${tasks.quotes[randomtasks_2]}\n➼ ${tasks.quotes[randomtasks_3]}`});
 		interaction.followUp({ embeds: [embed] });
 		client.db.set(`tasks_${interaction.user.id}`, [tasks.quotes[randomtasks_1], tasks.quotes[randomtasks_2], tasks.quotes[randomtasks_3]]);
 	},

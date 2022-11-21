@@ -43,10 +43,10 @@ module.exports = {
 					.setDescription(
 						'Congratulations Traveller! You got lucky today and struck the jackpot!'
 					)
-					.addField(
-						'Overview',
-						`Probability: 1/30\nEarned: ${jackpot.toString()} 🍇 `
-					)
+					.addFields({
+						name: 'Overview',
+						value: `Probability: 1/30\nEarned: ${jackpot.toString()} 🍇 `
+			})
 					.setColor('GOLD')
 					.setTimestamp()
 					.setFooter('2022 © Yarn Development | Tavern');
@@ -75,10 +75,10 @@ module.exports = {
 					.setDescription(
 						"Unfortunately you couldn't win the jackpot this time. Maybe next time?"
 					)
-					.addField(
-						'Overview',
-						`Jackpot Probability :1/30\nEarned: ${regular.toString()} 🍇`
-					)
+					.addFields({
+						name: 'Overview',
+						value: `Jackpot Probability :1/30\nEarned: ${regular.toString()} 🍇`
+			})
 					.setColor('DARK_BUT_NOT_BLACK')
 					.setTimestamp()
 					.setFooter('2022 © Yarn Development | Tavern');

@@ -23,13 +23,13 @@ module.exports = {
 				.setColor('BROWN')
 				.setTimestamp();
 			for (const property in jobobj) {
-				embed.addField(
-					`${jobobj[property]}`,
-					`Cost: ${jobs[jobobj[property]].cost}\nEarns: ${
+				embed.addFields({
+					name: `${jobobj[property]}`,
+					value: `Cost: ${jobs[jobobj[property]].cost}\nEarns: ${
 						jobs[jobobj[property]].earns
 					}`,
-					true
-				);
+					inline: true
+			});
 			}
 			embed.setFooter('2022 © Yarn Development | Tavern');
 			interaction.followUp({ embeds: [embed] });

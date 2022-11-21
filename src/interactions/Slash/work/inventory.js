@@ -30,13 +30,13 @@ module.exports = {
 				client.db.fetch(`bal_${interaction.user.id}.${interaction.guild.id}`);
 			const embed = new MessageEmbed()
 				.setTitle(`Inventory of ${interaction.user.username}`)
-				.addField('Registered At', new Date(newuser).toUTCString(), false)
-				.addField(
-					'Grape Balance',
-					`${bal.toString() ? bal.toString() : 'No balance.'}🍇  `,
-					true
-				)
-				.addField('Type of Storage', capitalize(storage), true)
+				.addFields({name: 'Registered At', value: new Date(newuser).toUTCString(), inline: false})
+				.addFields({
+					name: 'Grape Balance',
+					value: `${bal.toString() ? bal.toString() : 'No balance.'}🍇  `,
+					inline: true
+		})
+				.addFields({ name: 'Type of Storage', value: capitalize(storage), inline: true })
 				.setColor('DARK_BUT_NOT_BLACK')
 				.setTimestamp()
 				.setFooter('2022 © Yarn Development | Tavern');
